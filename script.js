@@ -64,8 +64,6 @@ const account = {
 // account.deposit();
 
 
-//parseFloat(prompt("How much would you like to deposit?"));
-//parseFloat(prompt("How much would you like to withdraw?"));
 
 function atm() {
   let choice = parseInt(prompt("Please select what you would like to do: 1) See balance. 2) Make a deposit. 3) Make a withdrawal. 4) Get account name. 5) Exit."));
@@ -79,6 +77,7 @@ function atm() {
     }
     else if (choice === 3) {
         parseFloat(prompt("How much would you like to withdraw?"));
+        // function makeWithdrawal(){}
     }
     else if (choice === 4) {
         account.getAccountName();
