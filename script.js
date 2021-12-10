@@ -1,58 +1,52 @@
-// BANK ACCOUNT
 
-// Start by creating the object and the properties. You can leave the functions empty for now if you want.
-// You'll find all the information about what properties the object should have in the readme file.
-
-// In the deposit and withdrawal function use this code to show the prompt
-// You need to change the message of course. You should also do some research why parseFloat() is used here
-// answer by making a comment in the code.
-// Be aware of that you need to add some code to this so you can display the actual input.
-
-// In the deposit and withdrawal function you also need to handle som potential errors.
-// To handle one of the potential error you can use this piece of code
-//isNaN(variableName);
-// you need to change the variableName to your actual variable.
-// you also need to check some other conditions here and use a logical operator.
-// try to say the sentece out loud or think it:
-// "A user should not be able to put 0 or negative numbers or empty string or a type that is not a number"
-// Do you know what operator you should use?
-
-// In the accountError and accountExit function you can use this to show a message to the user:
-//alert("your code here and maybe properties");
-// of course you need to put a proper message and you might need to display some of the properties.
-
-// STARTER FUNCTION
-//function atm() {
-  //let choice = parseInt(prompt("Display menu choices here"));
-  //prompt user for choice.
-
-  // you can use the variable choice for your switch or if/else statement
-  // so choice will hold the value of the user input.
-//}
-
-let balance = 100;
 
 const account = {
     accountName: "Therese",
-    balance: balance,
+    balance: 100,
     getBalance: function(){
-        const getBalance = this.balance;
-        return getBalance;
+        alert("Your balance is " + this.balance);
+        atm();
     },
     deposit: function(){
-       const deposit = depositAmount + this.balance;
-       return deposit;
+        let depositAmount = parseFloat(prompt("How much would you like to deposit?"), 10);
+        if (depositAmount === "" || depositAmount <= 0 || isNaN(depositAmount)) {
+            alert("This is not a valid amount to deposit")
+            this.deposit();
+        }
+        else {
+            this.balance += depositAmount;
+            this.getBalance();
+        }
+        atm();
     },
     withdrawal: function(){
-        const withdrawal = withdrawalAmount;
-        return withdrawal;
+        let withdrawalAmount = parseFloat(prompt("How much would you like to withdraw?"), 10);
+        if (withdrawalAmount === "" || withdrawalAmount <= 0 || isNaN(withdrawalAmount)) {
+            alert("This is not a valid amount for withdrawal")
+            this.withdrawal();
+        }
+        else {
+            this.balance -= withdrawalAmount;
+            this.getBalance();
+        }
+        atm();
     },
     getAccountName: function(){
-        return this.accountName;
+        alert("Your account name is " + this.accountName);
+        atm();
     },
     accountError: function(){
+        alert("Please enter a number between 1 and 5 to make your choice");
+            atm();
     },
     exitAccount: function(){
+        const exit = confirm("Are you sure you want to exit?");
+        if (exit) {
+            window.close();
+        }
+        else {
+            atm();
+        }
     },
 };
 
@@ -61,43 +55,62 @@ const account = {
 function atm() {
   let choice = parseInt(prompt("Please select what you would like to do: 1) See balance. 2) Make a deposit. 3) Make a withdrawal. 4) Get account name. 5) Exit."));
 
-    if (choice === 1) {
-        alert(`Your balance is ${account.getBalance()}`);
-        atm();
-    }
-    else if (choice === 2) {
-        let depositAmount = parseFloat(prompt("How much would you like to deposit?"), 10);
-        if (depositAmount = isNaN) {
-            alert(`You must enter a number`);
-        }
-        if ( depositAmount < 1) {
-            alert(`You cannot deposit this amount`)
-        }
-        atm();
-        }
-    else if (choice === 3) {
-        let withdrawalAmount = parseFloat(prompt("How much would you like to withdraw?"), 10);
-        if (withdrawalAmount = isNaN) {
-            alert(`You must enter a number`);
-        }
-        if ( depositAmount < 1  || depositAmount > account.balance) {
-            alert(`You cannot withdraw this amount`)
-        }
-        atm();
-        }
-    else if (choice === 4) {
-        alert(`Your account name is ${account.getAccountName()}`);
-        atm();
-    }
-    else if (choice === 5) {
-        close();
-    }
-    else {
-        alert("Please enter a number between 1 and 5 to make your choice");
-    }
+  switch (choice){
+    case 1:
+        account.getBalance();
+        break;
+    case 2:
+        account.deposit();
+        break;
+    case 3:
+        account.withdrawal();
+        break;
+    case 4:
+        account.getAccountName();
+        break;
+    case 5:        
+        account.exitAccount();
+        break;
+        default:
+            account.accountError();
+  }
 }
-   
 
 
 atm();
 
+
+
+//Comments
+
+//parseFloat is used because it will return a number from the string,
+//and a number is needed for the calculation in the account after deposit/withdrawal
+//I added radix 10 so that it will be base 10, decimal (and not binary etc.)
+
+//I started using if/else but then opted for switch
+//with 5 cases/choices it was easier to read the individual cases in switch than searching through if/else
+
+// this is how the if/else would look like in my code
+
+// function atm() {
+//     let choice = parseInt(prompt("Please select what you would like to do: 1) See balance. 2) Make a deposit. 3) Make a withdrawal. 4) Get account name. 5) Exit."));
+  
+//     if (choice === 1) {
+//         account.getBalance();
+//     }
+//     else if (choice === 2) {
+//         account.deposit();
+//         }
+//     else if (choice === 3) {
+//         account.withdrawal();
+//         }
+//     else if (choice === 4) {
+//         account.getAccountName();
+//     }
+//     else if (choice === 5) {
+//         account.exitAccount();
+//     }
+//     else {
+//         account.accountError();
+//     }
+// }
