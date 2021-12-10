@@ -4,7 +4,6 @@
 // You'll find all the information about what properties the object should have in the readme file.
 
 // In the deposit and withdrawal function use this code to show the prompt
-//
 // You need to change the message of course. You should also do some research why parseFloat() is used here
 // answer by making a comment in the code.
 // Be aware of that you need to add some code to this so you can display the actual input.
@@ -31,37 +30,31 @@
   // so choice will hold the value of the user input.
 //}
 
-
-
-// step 1 - create object
-
+let balance = 100;
 
 const account = {
     accountName: "Therese",
-    balance: 100,
+    balance: balance,
     getBalance: function(){
-        console.log(this.balance);
+        const getBalance = this.balance;
+        return getBalance;
     },
     deposit: function(){
-        const deposit = this.balance + 50;
-        console.log(deposit);
+       const deposit = depositAmount + this.balance;
+       return deposit;
     },
     withdrawal: function(){
-        const withdrawal = this.balance - 50;
-        console.log(withdrawal);
+        const withdrawal = withdrawalAmount;
+        return withdrawal;
     },
     getAccountName: function(){
-        console.log(this.accountName);
+        return this.accountName;
     },
-    accountError: function(){},
-    exitAccount: function(){},
+    accountError: function(){
+    },
+    exitAccount: function(){
+    },
 };
-
-
-// account.getAccountName();
-// account.getBalance();
-// account.withdrawal();
-// account.deposit();
 
 
 
@@ -69,26 +62,41 @@ function atm() {
   let choice = parseInt(prompt("Please select what you would like to do: 1) See balance. 2) Make a deposit. 3) Make a withdrawal. 4) Get account name. 5) Exit."));
 
     if (choice === 1) {
-        account.getBalance();
+        alert(`Your balance is ${account.getBalance()}`);
+        atm();
     }
     else if (choice === 2) {
-        parseFloat(prompt("How much would you like to deposit?"));
-        // function makeDeposit(){}
-    }
+        let depositAmount = parseFloat(prompt("How much would you like to deposit?"), 10);
+        if (depositAmount = isNaN) {
+            alert(`You must enter a number`);
+        }
+        if ( depositAmount < 1) {
+            alert(`You cannot deposit this amount`)
+        }
+        atm();
+        }
     else if (choice === 3) {
-        parseFloat(prompt("How much would you like to withdraw?"));
-        // function makeWithdrawal(){}
-    }
+        let withdrawalAmount = parseFloat(prompt("How much would you like to withdraw?"), 10);
+        if (withdrawalAmount = isNaN) {
+            alert(`You must enter a number`);
+        }
+        if ( depositAmount < 1  || depositAmount > account.balance) {
+            alert(`You cannot withdraw this amount`)
+        }
+        atm();
+        }
     else if (choice === 4) {
-        account.getAccountName();
+        alert(`Your account name is ${account.getAccountName()}`);
+        atm();
     }
     else if (choice === 5) {
-        alert("Goodbye");
+        close();
     }
     else {
-        alert("Please enter a number between 1 and 5 when making your choice.");
+        alert("Please enter a number between 1 and 5 to make your choice");
     }
 }
+   
 
 
 atm();
